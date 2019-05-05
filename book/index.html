@@ -1,0 +1,256 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>第1章 PyMOLチュートリアル: アルカリホスファターゼの構造を見る - pymol-book</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML"></script>
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="ch01.html"><strong aria-hidden="true">1.</strong> 第1章 PyMOLチュートリアル: アルカリホスファターゼの構造を見る</a></li><li><a href="ch02.html"><strong aria-hidden="true">2.</strong> 第2章 PyMOLのGUIの使い方</a></li><li><a href="ch03.html"><strong aria-hidden="true">3.</strong> 第3章 PyMOLの様々な機能</a></li><li><a href="ch04.html"><strong aria-hidden="true">4.</strong> 第4章 PyMOLのコマンドラインの使い方</a></li><li><a href="ch05.html"><strong aria-hidden="true">5.</strong> 第5章 プラグインのこととか</a></li><li><a href="append01.html"><strong aria-hidden="true">6.</strong> Appendix 1. インストール方法</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">pymol-book</h1>
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#第1章-pymolチュートリアル-アルカリホスファターゼの構造を見る" id="第1章-pymolチュートリアル-アルカリホスファターゼの構造を見る"><h1>第1章 PyMOLチュートリアル: アルカリホスファターゼの構造を見る</h1></a>
+<a class="header" href="#1-目的" id="1-目的"><h2>1. 目的</h2></a>
+<p>酵素などのタンパク質は、それぞれ固有のアミノ酸配列をもち、それが固有の立体構造に折れたたまります。これにより、アミノ酸配列上では離れていた残基同士が接近し、それらが協同して他の分子と相互作用したり化学反応を触媒したりすることができるようになります。タンパク質を含む生体分子が機能を果たすためには、その立体構造が本質的に重要です。生体分子は、ナノメートル（\( 10^{-9}\ \rm{m} \)）オーダーの微小なものですが、X線結晶構造解析法やNMR法、最近ではクライオ電子顕微鏡などの手法を用いて、その立体構造（分子を構成している各原子の\( xyz \)座標）を決定することができます。それらの構造データは、公共の立体構造データベースに蓄積され、誰もが自由に無料で利用できるようになっている。コンピュータを用いると、これらの立体構造データにインターネットを介してアクセスし、さらに分子グラフィックスソフトウェアを用いてその構造を表示することが可能となります。</p>
+<p>人間の肉眼では見えない生体分子をこのようにコンピュータ上で可視化することで、その機能に対する理解をいっそう深めることができます。ここでは練習として、加水分解酵素「<strong>アルカリホスファターゼ</strong>」のアミノ酸配列や立体構造に関するデータをデータベースから取得し、タンパク質の配列－構造－機能の関係を理解することを目的としていきます。それでは早速行ってみましょう。</p>
+<p>（ちなみに<strong>アルカリホスファターゼ</strong>は、我々の健康診断の時に肝臓の機能を測る指標としても用いられています。<strong>ALP</strong>の数値のやつです。）</p>
+<a class="header" href="#2-protein-data-bank-pdbにアクセスする" id="2-protein-data-bank-pdbにアクセスする"><h3>2. Protein Data Bank (PDB)にアクセスする</h3></a>
+<p>お使いのパソコンにインストールされているウェブブラウザ（Edge, Safari, Google Chrome, Firefoxなど）の検索エンジンに、「PDB」と入れて検索すると、<a href="https://www.rcsb.org/">RCSB PDB</a>のホームページが表示されます。</p>
+<p><img src="./image/part1/rcsbpdb1.png" width="70%"></p>
+<p>画面右上のボックスに「alkaline phosphatase」と入力し，ボックス右のGoボタンを押します。</p>
+<p><img src="./image/part1/rcsbpdb2.png" width="80%"></p>
+<p>メニュー左側に現れている「Refinements」の「ORGANISM」に表示されている「Escherichia coli」をクリックします。これで大腸菌由来の「alkaline phosphatase」に検索を絞り込むことができます。</p>
+<p><img src="./image/part1/rcsbpdb3.png" width="40%"></p>
+<p>右上の「Displaying 25 Results」の「25」を「All」に変更し，表示された結果の中から「1ALK」を探してクリックします（リストの一番下付近にあります）。</p>
+<p><img src="./image/part1/rcsbpdb4.png" width="80%"></p>
+<p>PDBの各エントリには、このように4文字の記号（<strong>PDB ID</strong>）が付けられている。なおPDB IDがあらかじめわかっているときは、テキストボックスにPDB IDを入れてGoボタンを押すことでも、目的の構造のページに移動することができます。これによって、1ALKエントリの内容が表示されます。</p>
+<p><img src="./image/part1/rcsbpdb5.png" width="80%"></p>
+<p>最初のページには、このエントリのタイトル、登録日、由来する生物種、立体構造のグラフィックスなどが表示されています。さらに画面上方のタブをクリックすると、このタンパク質に関するさまざまなデータにアクセスできます。現在表示されているのは「Structure Summary」タブの内容です。</p>
+<p><img src="./image/part1/rcsbpdb6.png" width="80%"></p>
+<p>このStructure Summaryのタブのページで、以下のデータに注目してみましょう。</p>
+<p>「<strong>Macromolecules</strong>」にはこのエントリのタンパク質の簡単な説明が記載されています。検索条件で指定したとおり、大腸菌（Escherichia coli）のアルカリホスファターゼであり、さらに分子量が94687.01であること、 449残基のアルカリホスファターゼ分子がA、 Bの2本のチェイン（鎖）として含まれていることなどがわかります。</p>
+<p><img src="./image/part1/rcsbpdb7.png" width="80%"></p>
+<p>「<strong>Small Molecules</strong>」にはこのエントリに含まれるタンパク質以外の低分子化合物や金属などの情報が記載されています。リン酸塩(<strong>PO4</strong>)、亜鉛イオン(<strong>ZN</strong>)、マグネシウムイオン(<strong>MG</strong>)が結合していることがわかります。このアルカリホスファターゼは、本来リン酸エステル化合物を加水分解する酵素であり、リン酸塩はこの酵素の<strong>阻害剤</strong>として結合している無機リン酸です。</p>
+<p><img src="./image/part1/rcsbpdb8.png" width="80%"></p>
+<a class="header" href="#2-pdb上でタンパク質のさらに詳しい情報を取得する" id="2-pdb上でタンパク質のさらに詳しい情報を取得する"><h2>2. PDB上でタンパク質のさらに詳しい情報を取得する</h2></a>
+<p>先述のPDB ID: 1ALK上の上方のタブには</p>
+<a class="header" href="#3-pdbデータのダウンロード" id="3-pdbデータのダウンロード"><h2>3. PDBデータのダウンロード</h2></a>
+<p>PDBの構造情報ファイルをダウンロードし、その中身を確認してみましょう。</p>
+<p><strong>分子の立体構造データ</strong>の実体は、<strong>その分子を構成している各原子の\( xyz \)座標データの集まり</strong>です。PDB ID: 1ALKのStructure Summaryのタブに戻って右上の<strong>Display Files</strong>を左クリックし、さらに<strong>PDB Format</strong>を左クリックすると、開かれたタブの中にPDBデータの中身が表示されます。</p>
+<p>最初に<code>HEADER</code>レコードや<code>REMARK</code>レコード、<code>SEQRES</code>レコードなどのヘッダ部があり、下方の<code>ATOM</code>（あるいは<code>HETATM</code>）レコードに分子を構成する各原子の\( xyz \)座標などが並んでいます。ヘッダ部には、この分子が由来する生物種や文献情報、構造決定方法に関する情報、アミノ酸配列、単量体か多量体か、構造中に含まれる金属や補酵素の情報などが書かれており、先程まで見ていたPDB ID: 1ALKのウェブページ上ではこれらの情報がわかりやすく整形されて表示されています。座標データは、20種類の標準アミノ酸は<code>ATOM</code>レコードに、それ以外の基質や金属、修飾アミノ酸などは<code>HETATM</code>レコードに記述されています。1ALKの<code>ATOM/HETATM</code>レコードに、タンパク質のAチェイン、 Bチェイン、続いて亜鉛（<code>ZN</code>）、マグネシウム（<code>MG</code>）、リン酸（<code>PO4</code>）、水分子（<code>HOH</code>）の座標データが並んでいることを確認してみましょう。</p>
+<pre><code>HEADER:		PDB IDやタンパク質の種類，データ登録年月日
+TITLE:		このデータを得た研究内容の簡単な説明
+SOURCE:		その分子の由来（遺伝子名，生物種など）
+AUTHOR:		著者名
+JRNL:		立体構造が発表された文献情報
+REMARK:		X線結晶解析の解像度やその他のコメントなど
+SEQRES:		アミノ酸・塩基配列
+HET:		標準アミノ酸・塩基以外の金属原子，基質などの情報
+HELIX/SHEET/TURN:  2次構造情報
+SSBOND:		ジスルフィド（S-S）結合
+ATOM:		原子座標など
+HETATM:		アミノ酸やヌクレオチド以外の原子（金属，基質化合物など）の座標など
+TER: 		チェイン（chain, 鎖）の終わり
+END:		エントリの終わり
+</code></pre>
+<p>なお、構造ファイルのデータフォーマットは、これまで伝統的に用いられてきた<strong>PDB format</strong>に代わって、2019年7月1日からは<strong>PDBx/mmCIF format</strong>が標準形式として採用されることになっています。このファイル形式は、人間にはわかりにくいがコンピュータで処理しやすい形式になっています。余裕があればこのフォーマットも新規タブで開いてみましょう。</p>
+<p>では、大腸菌のアルカリホスファターゼの立体構造データをダウンロードして、手元のコンピュータの中で可視化し、実際の立体構造を見てみましょう。このための可視化ソフトウェアとして、ここでは無料で利用でき、かつ多くの種類のコンピュータ上で動作することができる<strong>PyMOL</strong>を利用します。</p>
+<p>再びRCSB PDBの1ALKのページに戻って、画面右上の<strong>Download Files</strong>を左クリックし、メニューの中の<strong>PDB Format</strong>を右クリックして<strong>対象をファイルに保存</strong>を選択します。</p>
+<p><img src="./image/part1/rcsbpdb_down.png" width="250px"></p>
+<p>ここで、ファイル名を<code>1alk.pdb</code>とします。PDBファイルが<code>ダウンロード</code>のフォルダにダウンロードされるので、そこから<code>デスクトップ</code>にファイルを移動させます。</p>
+<a class="header" href="#4-pymolの起動" id="4-pymolの起動"><h2>4. PyMOLの起動</h2></a>
+<p>（書きかけです）</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload(true); // force reload from server (not from cache)
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
