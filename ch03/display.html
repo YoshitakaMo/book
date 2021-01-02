@@ -229,34 +229,67 @@
 <a class="header" href="#anaglyph-stereo" id="anaglyph-stereo"><h4>Anaglyph Stereo</h4></a>
 <p><img src="./image/display/stereo3.png"></p>
 <p>anaglyphモードは、一般的には左目に赤セロファン、右目に青セロファンを通したときに立体的に浮かび上がるような図への出力を行うモードです。いわゆる「赤青メガネ」を着用する状態で見ることを前提とする表示方法です。</p>
-<p>コマンドは<code>stereo, anaglyph</code>です。</p>
+<p>コマンドは<code>stereo anaglyph</code>です。</p>
 <a class="header" href="#cross-eye-stereo" id="cross-eye-stereo"><h4>Cross-Eye Stereo</h4></a>
 <p><img src="./image/display/stereo2.png"></p>
-<p>交差法による立体視用の図を出力するモードです。コマンドは<code>stereo, crosseye</code>です。</p>
+<p>交差法による立体視用の図を出力するモードです。コマンドは<code>stereo crosseye</code>です。</p>
 <a class="header" href="#wall-eye-stereo" id="wall-eye-stereo"><h4>Wall-Eye Stereo</h4></a>
-<p>コマンドは<code>stereo, walleye</code>です。</p>
+<p><img src="./image/display/stereo4.png"></p>
+<p>Wall-Eyeによる立体視用の図を出力するモードです。コマンドは<code>stereo walleye</code>です。</p>
 <a class="header" href="#quad-buffered-stereo" id="quad-buffered-stereo"><h4>Quad-Buffered Stereo</h4></a>
-<p>コマンドは<code>stereo, quadbuffer</code>です。</p>
+<p>Quad-Buffered stereo 3Dを利用した画面表示を行うモードです。しかし、この機能はお使いのパソコン（GPU）とモニター、OSが適切に対応している場合のみ利用できるようです。また、現行のMacおよびmacOSについてはこの機能を利用することができないようです。詳細は https://pymolwiki.org/index.php/Stereo_3D_Display_Options のページを御覧ください。</p>
+<p>コマンドは<code>stereo quadbuffer</code>です。</p>
 <a class="header" href="#zalman-stereo" id="zalman-stereo"><h4>Zalman Stereo</h4></a>
-<p>コマンドは<code>stereo, byrow</code>です。</p>
+<p><img src="./image/display/stereo5.png"></p>
+<p>この機能は<strong>ZALMAN社製の3Dモニター製品を利用している場合のみ</strong>効果を発揮します。この3Dモニターを使っているときであれば、立体視の訓練をしなくても上記の画像が立体的に見えるように表示されます。しかし、それ以外のモニターを使っているときには立体的に見えないので効果を実感することができません。コマンドは<code>stereo byrow</code>です。</p>
 <a class="header" href="#openvr" id="openvr"><h4>OpenVR</h4></a>
-<p>コマンドは<code>stereo, openvr</code>です。</p>
+<p>OpenVRは2019年6月頃から有志によって追加された機能であり、現在試験運用段階にあるようです。動作の様子は https://www.youtube.com/watch?v=kEKA1HnR9GM などで見ることができます。</p>
+<p>この機能はOpenVRに依存しているため、Homebrew, LinuxbrewでインストールしたOpensource版PyMOLで利用することはできず、anacondaか公式バイナリをインストールしたときでのみ利用可能です。また、OSもWindows, Linuxに対応しているがmacOSで動作させることができるかは現時点で不明です。また、VR自体が規格の統一やプラットフォーム競争の最中にあるため、本格的な利用はまだ先でしょうか。</p>
+<p>コマンドは<code>stereo openvr</code>です。</p>
+<hr>
 <a class="header" href="#swap-sides" id="swap-sides"><h4>Swap Sides</h4></a>
-<p>コマンドは<code>stereo, swap</code>です。</p>
+<p>Cross-Eye StereoまたはWall-Eye StereoをONにしているときにこの機能を利用すると、Internal GUI上に表示されている立体視用の画像が入れ替わります。コマンドは<code>stereo swap</code>です。</p>
+<hr>
 <a class="header" href="#chromadepth" id="chromadepth"><h4>Chromadepth</h4></a>
-<p>chromadepthモードは、画面に対する奥行きに対して自動的に色付けが変わる表示形式です。このモードにした状態で分子を回転させると、常に画面手前側が赤く、画面奥側が青色になるようにカラーリングが変化します。</p>
-<p>コマンドは<code>stereo, chromadepth</code>です。</p>
+<p><img src="./image/display/stereo6.png">
+chromadepthモードは、画面に対する奥行きに対して自動的に色付けが変わる表示形式です。このモードにした状態で分子を回転させると、常に画面手前側が赤く、画面奥側が青色になるようにカラーリングが変化します。</p>
+<p>コマンドは<code>stereo chromadepth</code>です。</p>
+<hr>
 <a class="header" href="#off" id="off"><h4>off</h4></a>
 <p>ステレオモードをオフにします。コマンドは<code>stereo, off</code>です。</p>
+<hr>
 <a class="header" href="#zoom" id="zoom"><h3>Zoom</h3></a>
+<p>ZoomによってInternal GUI上に表示する分子を拡大するよう視点を変更します。<code>x Angstrom sphere</code>をクリックすると、<code>x</code>の値に応じて表示される範囲が変化します。<code>All</code>では全オブジェクトが表示されるように自動的に視点を変更します。<code>complete</code>を利用すると、範囲全体がortoscopic viewに収まるようになります。</p>
+<p>コマンドでは<code>zoom [ selection [,buffer [, state=0 [, complete=0 ]]]]</code>です。<code>complete</code>を利用する場合は<code>1</code>を指定します。</p>
 <a class="header" href="#clip" id="clip"><h3>Clip</h3></a>
+<p>Clipの値を設定します。詳細は<a href="../ch02/index.html#%E3%82%AF%E3%83%AA%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0clip.html">第2章 2.4.3 操作の詳細 クリッピング</a>を御覧ください。</p>
 <hr>
 <a class="header" href="#background" id="background"><h3>Background</h3></a>
+<p>生体分子が表示されているViewer部分の背景について設定することができます。デフォルトでは黒背景になっています。</p>
+<a class="header" href="#input-typecheckbox-opaque" id="input-typecheckbox-opaque"><h4><input type="checkbox"> Opaque</h4></a>
+<p>PyMOL Viewerの背景の不透明について設定します。この不透明設定がONの場合、設定された背景色に従って描画されます。この設定がOFFの場合、背景は透明に描画されます。デフォルトではOFFになっています。コマンドは<code>set opaque_background, 0/1</code>です。</p>
+<p>……というのが本来の機能のようですが、<strong>実際には機能しておらず、常にONになっているようです</strong>。すなわち、背景は常に何かしらの色で塗られており、透明にすることはできないようです。もし背景を透過した画像を保存したい場合は、この代わりに<code>set ray_opaque_background, 0</code>とした上で<code>ray</code>コマンドを使い、その上で画像を保存することになります。</p>
+<a class="header" href="#input-typecheckbox-checkedchecked-alpha-checker" id="input-typecheckbox-checkedchecked-alpha-checker"><h4><input type="checkbox" checked="checked"> Alpha Checker</h4></a>
+<p>背景色が透過状態になっている場合に、透明な市松模様を表示させるか否かを設定します。デフォルトではONになっており、この状態で<code>set ray_opaque_background, 0</code>とした上で<code>ray</code>コマンドを入力すると、その表示を確認することができます。</p>
+<p><img src="./image/display/alphachecker.png"></p>
+<p>この表示の状態で画像を保存すると、背景が透過された状態になっています。</p>
+<hr>
+<a class="header" href="#white--light-grey--grey--black" id="white--light-grey--grey--black"><h4>White / Light Grey / Grey / Black</h4></a>
+<p>背景色を選択できます。デフォルトではBlackに設定されているため、通常は黒背景の中に生体分子が表示されます。この4つの選択肢は同時にいずれかの1つのみ適用されます。</p>
+<p>Whiteに設定すると背景が白となるので、画像出力時に利用できます。</p>
+<p>コマンドでは<code>set bg_rgb, [white|grey80|grey50|black|]</code>です。</p>
 <a class="header" href="#color-space" id="color-space"><h3>Color Space</h3></a>
 <a class="header" href="#quality" id="quality"><h3>Quality</h3></a>
 <a class="header" href="#grid" id="grid"><h3>Grid</h3></a>
 <hr>
 <a class="header" href="#input-typecheckbox-orthoscopic-view" id="input-typecheckbox-orthoscopic-view"><h3><input type="checkbox"> Orthoscopic View</h3></a>
+<p>Orthoscopic ViewをONにすると、遠近感(perspective)の効果をなしにすることができます。デフォルトのPyMOLの表示は遠近感を自動的に考慮した表示になっており、奥行きを自然に感じられるようになっていますが、その機能を停止させることができます。</p>
+<p>次のような一方向に長いPDB: 3AEHのchain Aを使って例を示します。<br>
+<img src="./image/display/3aeh.png" width="50%"></p>
+<p>このタンパク質を90°横から見て、Orthoscopic ViewをOFFにしている場合（左）とONにしている場合（右）の比較です<br>
+<img src="./image/display/ortho0.png" width="40%"><img src="./image/display/ortho1.png" width="40%"></p>
+<p>Orthoscopic ViewをOFFにしている場合、βバレル（βシートによる樽みたいな）構造やαヘリックスについて視差がうまれているため奥行きがわかりやすいですが、ONにしていると奥行きが少しわからなくなっている感じがします。</p>
+<p>球状タンパク質のほうな等方的な分子ではこの効果を実感することは少ないですが、上記のように、異方性の高いタンパク質でのみこのような違いを実感することができます。</p>
 <a class="header" href="#input-typecheckbox-checkedchecked-show-valences" id="input-typecheckbox-checkedchecked-show-valences"><h3><input type="checkbox" checked="checked"> Show Valences</h3></a>
 <a class="header" href="#input-typecheckbox-checkedchecked-smooth-lines" id="input-typecheckbox-checkedchecked-smooth-lines"><h3><input type="checkbox" checked="checked"> Smooth Lines</h3></a>
 <a class="header" href="#input-typecheckbox-checkedchecked-depth-cue-fogging" id="input-typecheckbox-checkedchecked-depth-cue-fogging"><h3><input type="checkbox" checked="checked"> Depth Cue (Fogging)</h3></a>
