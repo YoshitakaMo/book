@@ -169,10 +169,9 @@ import psico.fullinit
 <p>しかし、これを毎回PyMOLを立ち上げるたびに入れるのは面倒です。そこで、<strong>PyMOLを開いた時に最初に読み込まれる設定ファイル、<code>~/.pymolrc</code>に上の設定を書いておきましょう</strong>。（参考：<a href="../ch03/file.html#edit-pymolrc">3.1 File</a>）そうすると、PyMOL起動時に自動で上のプラグインが使えるようになっているはずです。</p>
 <h2><a class="header" href="#dsspプラグイン" id="dsspプラグイン">DSSPプラグイン</a></h2>
 <p><a href="installation.html">プラグインのインストール方法</a>の手順に従ってpsicoのインストールがうまく行っていれば、改めて起動した後にPyMOLのコマンドラインで<code>dssp</code>というコマンドが使えるようになっているはずです。このコマンドは開いているタンパク質に対して二次構造アサインメントプログラムの<strong>DSSP</strong>をかけてくれて、その計算結果をもとに表示を切り替えてくれます。ただし利用するためにはあらかじめ<code>mkdssp</code>コマンドがインストールされ、かつ動作することが条件です。現在、最新版のDSSPは以下のHomebrewコマンドからインストールすることができます。</p>
-<pre><code># https://github.com/brewsci/homebrew-bioに登録されました(2018年10月28日)
-brew install brewsci/bio/xssp
+<pre><code>brew install brewsci/bio/dssp
 </code></pre>
-<p>このxsspパッケージの中に<code>mkdssp</code>コマンドが入っています。ちなみにCentOS 7の方は、<code>yum -y install dssp</code>とすれば簡単に<code>mkdssp</code>コマンドがインストールできます。バージョンがちょっと古いですけど問題なく動作するはずです。</p>
+<p>このdsspパッケージの中に<code>mkdssp</code>コマンドが入っています。ちなみにCentOS 7の方は、<code>yum -y install dssp</code>とすれば簡単に<code>mkdssp</code>コマンドがインストールできます。バージョンがちょっと古いですけど問題なく動作するはずです。</p>
 <p>そしてPyMOLの画面に戻り、dsspコマンドを打てば、以下のような表示になります。
 <img src="./image/dssp1.png" width="100%" alt="DSSPの使用例" title="DSSPの使用例"></p>
 <p>DSSPプログラムによって判定された二次構造アサインの結果に対応して、PyMOL上の二次構造表示が変化し、色分けされたものになります。DSSPによる二次構造アサイン法とPyMOLネイティヴで入っているアサイン法は微妙に異なるため、細かいところをよーくみてみると、ものによっては二次構造アサインが変化している場合があります。DSSPによる二次構造判定法は現在もなおProtein Data Bankで公式に採用されていますので、こちらを使って表示させたほうが良いと個人的に思います。</p>
